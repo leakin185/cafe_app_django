@@ -1,13 +1,7 @@
 from django import forms 
-from django.forms.widgets import NumberInput
+from .models import Reservation
 
-FAVORITE_DISH = [ 
-    ('italian', 'Italian'), 
-    ('greek', 'Greek'), 
-    ('turkish', 'Turkish')
-]
-
-class DemoForm(forms.Form): 
-    name = forms.CharField(widget=forms.Textarea(attrs={'rows':5}), label="Enter Email Address", required=False)
-    reservation_date = forms.DateField(widget=NumberInput(attrs={'type':'date'}), required=False, help_text="Enter the exact date")
-    favourite_dish = forms.ChoiceField(choices=FAVORITE_DISH, required=False)
+class ReservationForm(forms.ModelForm): 
+    class Meta: 
+        model = Reservation 
+        fields = '__all__'
