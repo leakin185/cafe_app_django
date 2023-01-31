@@ -1,9 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin 
+from django.contrib.auth.models import User 
 from .models import MenuCategory
 from .models import Menu, Drink, DrinkCategory
 from .models import Reservation
-from django.contrib.auth.admin import UserAdmin 
-from django.contrib.auth.models import User 
 from .models import Person 
 
 # Register your models here.
@@ -16,6 +16,7 @@ admin.site.register(Reservation)
 # Unregister the provided model admin:  
 admin.site.unregister(User) 
 
+# Register our own admin
 @admin.register(User) 
 class NewAdmin(UserAdmin): 
     readonly_fields = [ 
