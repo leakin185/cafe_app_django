@@ -35,4 +35,4 @@ class NewAdmin(UserAdmin):
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin): 
     list_display = ("last_name", "first_name") 
-    search_fields = ("first_name__startswith", ) 
+    search_fields = ("first_name__startswith",) 
