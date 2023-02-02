@@ -3,10 +3,6 @@ from django.http import HttpResponse
 from datetime import datetime
 from demoapp.forms import ReservationForm
 
-# Create your views here.
-# def index(request): 
-#     return HttpResponse("Hello, world. This is the index view of Demoapp.") 
-
 def form_view(request): 
     form = ReservationForm()
     if request.method == 'POST':
@@ -43,10 +39,11 @@ def drinks(request, drink_name):
     return HttpResponse(f"<h2>{drink_name}</h2> " + choice_of_drink)
 
 def about(request): 
-    return HttpResponse("About us")
+    about_content = {'about':"Little Lemon is an Italian restaurant"}
+    return render(request, "about.html", about_content)
 
 def menu(request): 
-    return HttpResponse("Menu for Little Lemon")
+    return HttpResponse("Menu")
 
 def book(request): 
     return HttpResponse("Make a booking")
