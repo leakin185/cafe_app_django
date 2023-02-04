@@ -23,9 +23,6 @@ def index(request):
 '''.format(path, method) 
     return HttpResponse(content) 
 
-def home(request): 
-    return HttpResponse("Welcome to Little Lemon!")
-
 def display_date(request): 
     date_joined = datetime.today().year
     return HttpResponse(date_joined)
@@ -58,3 +55,12 @@ def menu_by_id(request):
     newmenu = Menu.objects.all()
     newmenu_dict = {'menu':newmenu}
     return render(request, "menu_card.html", newmenu_dict)
+
+def home(request): 
+    return render(request, "home.html", {}) 
+
+def register(request): 
+    return render(request, "register.html", {}) 
+
+def login(request): 
+    return render(request, "login.html", {}) 

@@ -21,8 +21,7 @@ from . import views
 
 urlpatterns = [
     path('demo/', include('demoapp.urls')),
-    path('admin/', admin.site.urls),
-    path('', views.home),
+    path('admin/', admin.site.urls), 
 ]
 
 handler404 = 'demoproject.views.handler404'
