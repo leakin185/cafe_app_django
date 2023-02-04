@@ -26,7 +26,7 @@ class Drink(models.Model):
 class Reservation(models.Model): 
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    time_log = models.TimeField(help_text="Enter the exact time!")
+    booking_time = models.DateTimeField(auto_now=True)
 
 class Person(models.Model): 
     last_name = models.TextField() 
