@@ -48,8 +48,8 @@ def menu(request):
     ]}
     return render(request, "menu.html", newMenu)
 
-def book(request): 
-    return HttpResponse("Make a booking")
+def book(request):
+    return render(request, 'book.html')
 
 def menu_by_id(request): 
     newmenu = Menu.objects.all()
