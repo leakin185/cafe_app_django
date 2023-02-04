@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse 
 from datetime import datetime
 from demoapp.forms import ReservationForm
+from .models import Menu
 
 def form_view(request): 
     form = ReservationForm()
@@ -44,11 +45,16 @@ def about(request):
 
 def menu(request): 
     newMenu = {'mains': [ 
-        {'name':'falafel', 'price':12}, 
-        {'name':'shawarma', 'price':15}, 
-        {'name':'gyro', 'price':10}, 
+    {'name':'falafel', 'price':12}, 
+    {'name':'shawarma', 'price':15}, 
+    {'name':'gyro', 'price':10}, 
     ]}
     return render(request, "menu.html", newMenu)
 
 def book(request): 
     return HttpResponse("Make a booking")
+
+def menu_by_id(request): 
+    newmenu = Menu.objects.all()
+    newmenu_dict = {'menu':newmenu}
+    return render(request, "menu_card.html", newmenu_dict)
