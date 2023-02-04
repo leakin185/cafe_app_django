@@ -12,6 +12,16 @@
     <!-- Add heading code -->
     <h1 style="color: #495e57">Menu</h1>
 
+    <table
+    style =border:1px solid black;">
+    {% for item in mains %}
+    <tr>
+      <td style="border: 1px solid black">{{item.name}}</td>
+      <td style="border: 1px solid black">{{item.price}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
     <!-- Add image code -->
     <img src="{% static 'img/dessert.jpg' %}" />
   </body>

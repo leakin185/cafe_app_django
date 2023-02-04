@@ -43,7 +43,12 @@ def about(request):
     return render(request, "about.html", {'content': about_content})
 
 def menu(request): 
-    return render(request, "menu.html")
+    newMenu = {'mains': [ 
+        {'name':'falafel', 'price':12}, 
+        {'name':'shawarma', 'price':15}, 
+        {'name':'gyro', 'price':10}, 
+    ]}
+    return render(request, "menu.html", newMenu)
 
 def book(request): 
     return HttpResponse("Make a booking")
