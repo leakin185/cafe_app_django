@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime
 from demoapp.forms import ReservationForm
 from .models import Menu
+from django.views import View   
 
 def form_view(request): 
     form = ReservationForm()
@@ -64,3 +65,8 @@ def register(request):
 
 def login(request): 
     return render(request, "login.html", {}) 
+
+class NewView(View):   
+    def get(self, request):   
+        # View logic will place here   
+        return HttpResponse('response') 
