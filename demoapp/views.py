@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from datetime import datetime
 from demoapp.forms import ReservationForm
 from .models import Menu
-from django.views import View   
+from django.views import View  
+from .forms import BookingForm 
 
 def form_view(request): 
     form = ReservationForm()
@@ -38,19 +39,21 @@ def drinks(request, drink_name):
     return HttpResponse(f"<h2>{drink_name}</h2> " + choice_of_drink)
 
 def about(request): 
-    about_content = {'about':"Little Lemon is a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist. The chefs draw inspiration from Italian, Greek, and Turkish culture and have a menu of 12–15 items that they rotate seasonally. The restaurant has a rustic and relaxed atmosphere with moderate prices, making it a popular place for a meal any time of the day."}
-    return render(request, "about.html", {'content': about_content})
+    return render(request, "about.html")
 
 def menu(request): 
-    newMenu = {'mains': [ 
-    {'name':'falafel', 'price':12}, 
-    {'name':'shawarma', 'price':15}, 
-    {'name':'gyro', 'price':10}, 
-    ]}
-    return render(request, "menu.html", newMenu)
+    menu_data = Menu.objects.all()
+    main_data = {"menu": menu_data}
+    return render(request, 'menu.html', {"menu": main_data})
 
 def book(request):
-    return render(request, 'book.html')
+    form = BookingForm()
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'book.html', context)
 
 def menu_by_id(request): 
     newmenu = Menu.objects.all()
@@ -58,7 +61,7 @@ def menu_by_id(request):
     return render(request, "menu_card.html", newmenu_dict)
 
 def home(request): 
-    return render(request, "home.html", {}) 
+    return render(request, "index.html") 
 
 def register(request): 
     return render(request, "register.html", {}) 
@@ -70,3 +73,10 @@ class NewView(View):
     def get(self, request):   
         # View logic will place here   
         return HttpResponse('response') 
+
+def display_menu_item(request, pk=None): 
+    if pk: 
+        menu_item = Menu.objects.get(pk=pk) 
+    else: 
+        menu_item = "" 
+    return render(request, 'menu_item.html', {"menu_item": menu_item}) 

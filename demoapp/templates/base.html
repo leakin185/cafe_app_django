@@ -1,27 +1,48 @@
-<!-- Add include tag -->
-{% include 'partials/_header.html' %}
+{% load static %}
 
-<!—side bar-->
-<div style="width: 20%; float: left; border-right-style: groove">
-  <ul>
-    <b>
-      <li><a href="/demo/home/">home</a></li>
-      <li><a href="/demo/register/">register</a></li>
-      <li><a href="/demo/login/">login</a></li>
-    </b>
-  </ul>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!--contents-->
-<div style="margin-left: 21%">
-  <p>{% block contents %} {% endblock %}</p>
-</div>
+    <title>Little Lemon</title>
+    <meta name="description" content="A brief description" />
+    <meta
+      name="author"
+      content="Based in Chicago, Illinois, Little Lemon is a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist."
+    />
 
-<!--footer-->
-<hr />
+    <!-- Load favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'img/favicon.ico' %}"
+    />
 
-{% block footer %}
-<div>
-  <h4 align="right">All rights reserved</h4>
-</div>
-{% endblock %}
+    <!-- Include your CSS files here -->
+    <link
+      rel="preload"
+      as="style"
+      href="{% static 'css/style.css' %}"
+      onload="this.rel = 'stylesheet'"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Markazi+Text:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!--Header content-->
+    {% include 'partials/_header.html' %}
+
+    <main>{% block content %} {% endblock %}</main>
+
+    <!--Footer content-->
+    {% include 'partials/_footer.html' %}
+  </body>
+</html>
