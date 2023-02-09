@@ -1,2 +1,2 @@
-# cafe_app_django
+# Cafe App
 Meta Backend Developer Course - Django Web Framework
