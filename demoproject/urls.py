@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     path('restaurant/', include('demoapp.urls')),
     path('admin/', admin.site.urls), 
+    path('api/',include('LittleLemonAPI.urls')),
 ]
 
 handler404 = 'demoproject.views.handler404'
